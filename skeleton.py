@@ -279,20 +279,22 @@ def find_cen(U : np.array, count : int) -> np.array:
 
 @jit(fastmath = True, nogil = True, cache=True)
 def pre_img(img : np.array) -> "img":
+    
     """
     function :
         pre-prepare the img 
     """
+    img = np.where(img>0, 1, 0).astype('uint8')
     ekernel = np.array([[0,1,0],
                       [1,0,1],
                       [0,1,0]], dtype = 'uint8')
     fkernel = np.ones((3,3),dtype='uint8')
     
     img = cv2.erode(img,ekernel,iterations = 1)
-    img = cv2.dilate(img,fkernel,iterations = 2)
+    img = cv2.dilate(img,fkernel,iterations = 4)
+    img = cv2.dilate(img,fkernel,iterations = 4)
     
     return img
-    return cv2.erode(img,ekernel,iterations = 1)
     
 @jit(fastmath = True, nogil = True, cache=True)
 def find_cen2(U : np.array, count : int) -> np.array:
