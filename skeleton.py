@@ -291,8 +291,8 @@ def pre_img(img : np.array) -> "img":
     fkernel = np.ones((3,3),dtype='uint8')
     
     img = cv2.erode(img,ekernel,iterations = 1)
-    img = cv2.dilate(img,fkernel,iterations = 4)
-    img = cv2.dilate(img,fkernel,iterations = 4)
+    #img = cv2.dilate(img,fkernel,iterations = 4)
+    #img = cv2.dilate(img,fkernel,iterations = 4)
     
     return img
     
