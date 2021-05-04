@@ -278,7 +278,6 @@ def find_cen(U: np.array, count: int) -> np.array:
     return np.logical_and(g1, g2)
 
 
-@jit(fastmath=True, nogil=True, cache=True)
 def pre_img(img: np.array, **kwargs) -> np.array:
     """
     function :
@@ -674,7 +673,7 @@ def NT_skeleton(img, **kwargs):
                         [0, 1, 0]], dtype='uint8')
     assert img.dtype == 'uint8' or img.dtype == np.uint8, "it is not uint8"
 
-    img = pre_img(img, kwargs)
+    img = pre_img(img, **kwargs)
     labels = label(img, connectivity=1, background=0)
     group = regionprops(labels, cache=True)
 
