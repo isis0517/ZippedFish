@@ -293,8 +293,8 @@ def pre_img(img: np.array, **kwargs) -> np.array:
 
     img = cv2.erode(img, ekernel, iterations=er_num)
     img = cv2.dilate(img, fkernel, iterations=di_num)
-
-    return img
+    # the result of dilate or erode is not Binarization(255 or 0) .we must insure that
+    return np.where(img>1, 255, 0).astype('uint8')
 
 
 @jit(fastmath=True, nogil=True, cache=True)
