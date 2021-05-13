@@ -718,7 +718,18 @@ def NT_skeleton(img, **kwargs):
 
     result = find_cen(U, count)  # 1ms
     result = result * (erosion > 100)
+    
+    labels = label(result, connectivity=2, background=False)
+    group = regionprops(labels)
 
+    index = 0
+    area = 0
+    for com in group:
+        if com.area > area:
+            index = com.label
+            area = com.area
+    result = labels==index
+    
     point = np.nonzero(result)
     point = list(zip(point[0], point[1]))
 
