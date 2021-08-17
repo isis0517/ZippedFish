@@ -1,3 +1,8 @@
 *.avi
 .ipynb_checkpoints/
 __pycache__/
+*.npy
+*.npz
+*.png
+*.pkl
+checkpoints/
